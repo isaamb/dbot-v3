@@ -27,17 +27,17 @@ client = discord.Client(intents=intents)
 async def on_ready():
     print(f'We have logged in as {bot.user}')
 
-@bot.command()
+@bot.command(brief='pong')
 async def ping(ctx):
 	await ctx.channel.send("pong")
 
-@bot.command()
+@bot.command(brief='Try this for a laugh!')
 async def joke(ctx):
     await ctx.channel.send("What\'s a duck\'s favorite ballet?")
     time.sleep(2)
     await ctx.channel.send("The Nut-quacker")
 
-@bot.command()
+@bot.command(brief='Echoes your response')
 async def print(ctx, *args):
     response = ""
 
@@ -48,22 +48,26 @@ async def print(ctx, *args):
 
 ranNums = 0
 
-@bot.command()
+@bot.command(brief='Test your knowledge with a short quiz')
 async def quiz(ctx):
     ranNums = random.sample(range(0, len(quizQuestions)), 1) #https://docs.python.org/3.3/library/random.html#random.sample
     print(ranNums)
-    await ctx.channel.send("1) T or F: Is Brandon colorblind?\n 2) Which is a Barry B. Benson quote? a. 'You like jazz?' b. 'My sweater is Lacoste, and I have no pants.'\nTo respond, type $checkQuiz and then your answers.")
+    await ctx.channel.send("1) T or F: Is Brandon colorblind?\n 2) Which is a Barry B. Benson quote? a. 'You like jazz?' b. 'My sweater is Lacoste, and I have no pants.'\n3)What year did the first iPhone come out? a) 2005 b) 2006 c) 2007\nTo respond, type $checkQuiz and then your answers.")
 
 @bot.command()
-async def checkQuiz(ctx, arg1, arg2):
+async def checkQuiz(ctx, arg1, arg2, arg3):
     quizScore = 0
    # response = ""
     if arg1 == "T" or "t":
         quizScore += 1
     if arg2 == "a" or "A":
         quizScore += 1
+    if arg3 == "c" or "C":
+        quizScore += 1
     if quizScore > 0:
         await ctx.channel.send(f"Well done! Your score is {quizScore}")
+    if quizScore == 0:
+        await ctx.channel.send("How did you not get any correct?")
 
 
 bot.run(TOKEN)
