@@ -29,6 +29,8 @@ async def ping(ctx):
 async def joke(ctx):
     ranNum = random.randint(0,2) #generate a random number from 0 to 2
     #for whichever number is generated, send a specific joke
+
+    #change to switchcases use this https://www.freecodecamp.org/news/python-switch-statement-switch-case-example/ 
     if ranNum == 0 : 
         await ctx.channel.send("What\'s a duck\'s favorite ballet?")
         time.sleep(2)
