@@ -1,4 +1,5 @@
 {
+    "READ ME : this is not in use for this project, it is just for if i can figure out how to get json to work in the bot.py file in the future" : 0,
     "quizRandom" : 0,
     "quizQuestions" : ["T or F: Is Brandon colorblind?", "Which is a Barry B. Benson quote? a. 'You like jazz?' b. 'My sweater is Lacoste, and I have no pants.'"],
     "quizAnswers" : ["T", "a"]
