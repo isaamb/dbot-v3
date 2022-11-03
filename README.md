@@ -1,4 +1,6 @@
 # dbot-v3
+**Use bot3.py for the most up-to-date code & comments
+
 This bot's functions (add to a discord channel to see them in action!): 
   
   -Type "$ping", and the bot responds with "Pong!"
