@@ -9,20 +9,17 @@ from discord.ext import commands
 load_dotenv()
 TOKEN = os.getenv("TOKEN")
 
+#setting up connection to discord
 intents = discord.Intents.default()
 intents.message_content = True
-
 bot = commands.Bot(intents=intents, command_prefix="$")
 client = discord.Client(intents=intents)
 
 #variables for the quiz questions, contain the questions for the quiz and then the answers
 quizRandom = [0, 1, 2, 3, 4] #this is used so that the numbers can be randomized later, but without messing up the correlation between questions and answers
-quizQuestions = ["T or F: Is Brandon colorblind?", "Which is a Barry B. Benson quote? a. 'You like jazz?' b. 'My sweater is Lacoste, and I have no pants.'", "What year did the first iPhone come out? a) 2005 b) 2006 c) 2007", "Which is the longest river in South Africa? a) Limpopo River b) Orange River c) Vaal River", "T or F: Sir Francis Bacon said 'Knowledge is power'"]
+quizQuestions = ["T or F: Is Brandon colorblind?", "Which is a Barry B. Benson quote? a. 'You like jazz?' b. 'My sweater is Lacoste, and I have no pants.'", "What year did the first iPhone come out? a. 2005 b. 2006 c. 2007", "Which is the longest river in South Africa? a. Limpopo River b. Orange River c. Vaal River", "T or F: Sir Francis Bacon said 'Knowledge is power'"]
 quizAnswers = ["t", "a", "c", "b", "t"]
 #calling what the array number is so that they can be used in the quiz and checkQuiz functions
-qOne = 0
-qTwo = 0
-qThree = 0
 
 #when the bot has logged in, send a message in the node channel for confirmation
 @bot.event
@@ -76,6 +73,10 @@ async def quiz(ctx):
 async def checkQuiz(ctx, arg1, arg2, arg3):
     quizScore = 0
     #change their responses to lowercase; check their response with what the response should be based on the answers array; if they typed the correct thing add 1 to their quiz Score
+    #have to set these again otherwise it automatically keeps them at 0, I haven't found a good way to fix it
+    qOne = quizRandom[0]
+    qTwo = quizRandom[1]
+    qThree = quizRandom[2]
     if arg1.lower() == quizAnswers[qOne]:
         quizScore += 1
     if arg2.lower() == quizAnswers[qTwo]:
