@@ -9,7 +9,7 @@ This bot's functions (add to a discord channel to see them in action!):
  
   -Type "$quiz" to receive 3 quiz questions, and respond with "$checkQuiz [insert answers with spaces between]" (ex. #checkQuiz x y z) to check them and get your score
 
-The main source I used to begin developing this bot is https://betterprogramming.pub/how-to-make-discord-bot-commands-in-python-2cae39cbfd55
+The main source I used to begin developing this bot is https://betterprogramming.pub/how-to-make-discord-bot-commands-in-python-2cae39cbfd55 , and I used https://www.freecodecamp.org/news/python-switch-statement-switch-case-example/ to help me with changing my if/elif statements to switchcases in bot2.py
 
 Command handling is where rather than having a long string of "if, elif" statments, the main node calls out to another file that contains the commands. In my bot, I do still have everything in the main bot.py file, but each command is a separate function (and specified as such by @bot.command)
 
