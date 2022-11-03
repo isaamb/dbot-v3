@@ -1,8 +1,8 @@
-import math
+#this version is trying to use arrays that way i can randomize the quiz questions
+#3-17 = setting up stuff
 import discord
 import os
 import time
-import json
 import random
 
 from dotenv import load_dotenv
@@ -15,6 +15,15 @@ intents.message_content = True
 
 bot = commands.Bot(intents=intents, command_prefix="$")
 client = discord.Client(intents=intents)
+
+#variables for the quiz questions, contain the questions for the quiz and then the answers
+quizRandom = [0, 1, 2, 3, 4]
+quizQuestions = ["T or F: Is Brandon colorblind?", "Which is a Barry B. Benson quote? a. 'You like jazz?' b. 'My sweater is Lacoste, and I have no pants.'", "What year did the first iPhone come out? a) 2005 b) 2006 c) 2007", "Which is the longest river in South Africa? a) Limpopo River b) Orange River c) Vaal River", "T or F: Sir Francis Bacon said 'Knowledge is power'"]
+quizAnswers = ["t", "a", "c", "b", "t"]
+qOne = 0
+qTwo = 0
+qThree = 0
+
 
 #when the bot has logged in, send a message in the node channel for confirmation
 @bot.event
@@ -54,17 +63,22 @@ async def echo(ctx, *args):
 
 @bot.command(brief='Test your knowledge with a short quiz')
 async def quiz(ctx):
-    await ctx.channel.send("1) T or F: Is Brandon colorblind?\n 2) Which is a Barry B. Benson quote? a. 'You like jazz?' b. 'My sweater is Lacoste, and I have no pants.'\n3)What year did the first iPhone come out? a) 2005 b) 2006 c) 2007\nTo respond, type $checkQuiz and then your answers.")
+    random.shuffle(quizRandom)      
+    qOne = quizRandom[0]
+    qTwo = quizRandom[1]
+    qThree = quizRandom[2]
+    await ctx.channel.send(f"1) {quizQuestions[qOne]}\n 2) {quizQuestions[qTwo]}\n 3) {quizQuestions[qThree]}\nTo respond, type $checkQuiz and then your answers.")
+
 
 @bot.command()
 async def checkQuiz(ctx, arg1, arg2, arg3):
     quizScore = 0
-    #change their responses to lowercase; if they typed the correct thing add 1 to their quiz Score
-    if arg1.lower() == "t":
+    #change their responses to lowercase; check their response with what the response should be based on the answers array; if they typed the correct thing add 1 to their quiz Score
+    if arg1.lower() == quizAnswers[qOne]:
         quizScore += 1
-    if arg2.lower() == "a":
+    if arg2.lower() == quizAnswers[qTwo]:
         quizScore += 1
-    if arg3.lower() == "c":
+    if arg3.lower() == quizAnswers[qThree]:
         quizScore += 1
     #if they got any correct, tell them their score. if not, tell them they suck.
     if quizScore > 0:
